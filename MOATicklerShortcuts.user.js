@@ -1,26 +1,26 @@
 // ==UserScript==
-// @name        MOA Tickler
+// @name        MOA Tickler Shortcuts
 // @namespace   GongOscar
 // @description MOA shortcut ticklers, sorted by priority
 // @include     */ticklerMain.jsp*
 // @require     https://code.jquery.com/jquery-3.6.0.js
 // @grant       GM_addStyle
-// @version			23.02.12.0
+// @version	23.03.15.1
 // ==/UserScript==
 
 //changelog
-//23.02.12.0: quipo update: changed appending paragraph
+// 23.03.15.0 - added Dr. Gong's button
 
 var HoneyID = 135
 var TCISurreyID = 34
+var GongID = 133
 var urlPath = ('https://' + location.host + window.location.pathname + '?')
 
 
 window.addEventListener('load', function() {
 
-  var AppendingParagraph = $("[name=serviceform]")[0]
-  console.log(AppendingParagraph)
-  //AppendingParagraph = AppendingParagraph.parentElement.previousElementSibling
+  var AppendingParagraph = $(".HelpAboutLogout")[0]
+  AppendingParagraph = AppendingParagraph.parentElement.previousElementSibling
 
   var honeyBut = document.createElement('input');
   honeyBut.type = 'button';
@@ -40,6 +40,15 @@ window.addEventListener('load', function() {
   TCISurreyBut.setAttribute('style', 'width:100px;font-size:12px;padding:0px; background-color:cyan;');
 	AppendingParagraph.appendChild(TCISurreyBut);
 
+  var TCISurreyBut = document.createElement('input');
+  TCISurreyBut.type = 'button';
+  TCISurreyBut.id = 'GongHighBut'
+  TCISurreyBut.name = 'GongHighBut'
+  TCISurreyBut.value = 'Gong - High'
+  TCISurreyBut.onclick = GongHighButFunc;
+  TCISurreyBut.setAttribute('style', 'width:100px;font-size:12px;padding:0px; background-color:DeepSkyBlue;');
+	AppendingParagraph.appendChild(TCISurreyBut);
+
 }, false);
 
 
@@ -57,4 +66,9 @@ function TCISurreyButFunc(){
 
 }
 
-//https://total-life-care.kai-oscar.com/oscar/tickler/ticklerMain.jsp?assignedTo=34&Submit=Create+Report&sort_order=desc&sort_column=priority
+function GongHighButFunc(){
+  var newURL = (urlPath + "assignedTo=" + GongID + "&Submit=Create+Report&sort_order=desc&sort_column=priority")
+    console.log(newURL)
+  window.location.href = newURL
+
+}
