@@ -19,8 +19,8 @@ var urlPath = ('https://' + location.host + window.location.pathname + '?')
 
 window.addEventListener('load', function() {
 
-  var AppendingParagraph = $(".HelpAboutLogout")[0]
-  AppendingParagraph = AppendingParagraph.parentElement.previousElementSibling
+  var AppendingParagraph = $("[name=serviceform]")[0]
+  //AppendingParagraph = AppendingParagraph.parentElement.previousElementSibling
 
   var honeyBut = document.createElement('input');
   honeyBut.type = 'button';
