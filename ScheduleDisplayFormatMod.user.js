@@ -6,7 +6,7 @@
 // @include     *provideradminday.jsp?*displaymode=day*
 // @require     https://code.jquery.com/jquery-3.6.0.js
 // @grant       GM_addStyle
-// @version	    23.03.15.0
+// @version	    23.03.15.2
 // ==/UserScript==
 
 
