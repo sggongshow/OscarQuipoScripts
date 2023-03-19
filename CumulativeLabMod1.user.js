@@ -4,11 +4,12 @@
 // @include     *lab/CumulativeLabValues.jsp*
 // @require     https://code.jquery.com/jquery-3.6.0.js
 // @grant       GM_addStyle
-// @version 	23.01.03.1
+// @version 	23.03.18.1
 // ==/UserScript==
 //========Get Path============
 
 //Changelog
+//23.03.18.0 - PROGRAMMED FOR QUIPO - problems with lab range as connected with text with no spacing. fixed. with regex
 //22.12.08.1 - programmed for new vanilla oscar19
 //- note, Getdate() will need to be modified depending on date format. curretly unchanged until vanilla oscar19 runnig
 //22.12.08.0- well health broke it. doesn't work with them anymore due to long delay in getting data
@@ -516,9 +517,8 @@ function toggleTableVis(){
 
   var labGrid = $('#cumulativeLab')[0]
   var loadingText = $('#loadingDiv')[0]
-  console.log("toggle" + labGrid.hidden + " to " + !labGrid.hidden)
- 	labGrid.hidden = !labGrid.hidden
-  loadingText.hidden = !loadingText.hidden
+ 	//labGrid.hidden = !labGrid.hidden
+  //loadingText.hidden = !loadingText.hidden
 }
 //------------------------------------------------------------------------------------------------------------------------------------------- Major code section part 2, data manipulation
 //wait for all labs data to be loaded before modifying and putting colors around it.
@@ -595,7 +595,7 @@ function getDate(){
 
   console.log('getdate')
   var LabDateRawArr = $('div[id*=preventionProcedure]')
-  console.log(LabDateRawArr)
+  //console.log(LabDateRawArr)
 
   for (var i=0; i<LabDateRawArr.length; i++){ //LabDateRawArr.length
     var id = LabDateRawArr[i].id
@@ -603,7 +603,7 @@ function getDate(){
 		RawText = RawText.substring(0, RawText.lastIndexOf(' '))
     RawText = RawText.substring(RawText.lastIndexOf(' ')+1)
     RawText = RawText.trim()
-    console.log(RawText)
+    //console.log(RawText)
     var eleDate = new Date(RawText)
 
     var fillerArr = [id,eleDate]
@@ -619,7 +619,7 @@ function getDate(){
     }
   }
 
-	console.log(topDates)
+	//console.log(topDates)
 
 }
 //---------------
@@ -633,11 +633,32 @@ function labTextMod(){
   //console.log(LabDateRawArr.length)
   for (var i=0; i< LabDateRawArr.length; i++){ //LabDateRawArr.length
   	var RawText = LabDateRawArr[i].innerHTML
+    //console.log(RawText)
     var labRange = LabDateRawArr[i].title.split('body=[')[1]
     labRange = labRange.split(']')[0]
-    labRange = labRange.substring(labRange.lastIndexOf(' '))
+    //console.log(labRange)
 
-    labRange = labRange.replace(/\s/g, ''); //Extra spaces in the reference range string causes issues
+
+
+    // SPLIT THE VALUE NORMAL RANGE FROM ATTACHED TEXT.
+    // THERE'S NO SPACING. THUS NEED TO FILTER AWAY THE LETTERS AND SYMPTOMS NOT INCLUDING <>=.-
+    if (labRange.length>1){
+    //Due to lack of spacing between value and units. this section is to make sure only the range values show
+      let regex = /[^0-9<>=.-]/g; // FIND ANYTHING THAT'S NOT NUMBER OR EXCLUDED SYMBOLS
+      let match = labRange.match(regex); // GET AN ARRAY OF ALL THINGS THAT MATCH
+      //console.log(match)
+
+      if (match != null){
+        let lastIndex = labRange.lastIndexOf(match.pop())//GET THE LAST FOUND MATCH. AND FIND THE LAST INDEX OF THAT.
+        labRange = labRange.substring(lastIndex+1)
+      }
+
+      //console.log(labRange)
+      labRange = labRange.substring(labRange.lastIndexOf(' '))
+      labRange = labRange.replace(/\s/g, ''); //Extra spaces in the reference range string causes issues
+    }
+
+    //----END BLOCK: SPLIT THE VALUE NORMAL RANGE FROM ATTACHED TEXT.
 
     //removal of times and bolding of values
     if (RawText.indexOf('</b>')>=0){
@@ -677,7 +698,7 @@ function labTextMod(){
 
   //console.log(topDates)
 
-  setTimeout(function(){ colorDates() },250);
+  setTimeout(function(){ colorDates() },250); //********************
 }
 
 function checkDoneLabTextMod(){
@@ -755,9 +776,9 @@ function SortArea(){
     var divId = visibleLabValueArr[i][0]
     var eledate = visibleLabValueArr[i][1]
     var objDiv = document.getElementById(divId)
-    console.log(divId)
-    console.log(eledate)
-    console.log(objDiv)
+    //console.log(divId)
+   //console.log(eledate)
+    //console.log(objDiv)
     //var Pusharr =
     if(objDiv.previousElementSibling.id.indexOf('headP')>=0){
      	 copyVisibleLabArr.push([objDiv,eledate])
@@ -811,7 +832,7 @@ function SortArea(){
 function checkRange(){
   console.log("check range")
 	var LabDateRawArr = $('div[id*=preventionProcedure]')
-  //console.log(LabDateRawArr)
+  console.log(LabDateRawArr)
 
 	console.log("check if labs in rage")
   for (var i=0; i<LabDateRawArr.length; i++){
@@ -829,7 +850,7 @@ function checkRange(){
 
 
     if (valueStr.includes("-")){
-      console.log(valueStr)
+      //console.log(valueStr)
       valueStr = "NaN"
     }
     /*if (valueStr.indexOf(">")>=0){//If result contain ">" it usually means something is bad
