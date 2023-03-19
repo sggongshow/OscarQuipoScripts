@@ -4,7 +4,7 @@
 // @include     *lab/CumulativeLabValues.jsp*
 // @require     https://code.jquery.com/jquery-3.6.0.js
 // @grant       GM_addStyle
-// @version 	23.03.18.1
+// @version 	23.03.18.2
 // ==/UserScript==
 //========Get Path============
 
@@ -517,8 +517,8 @@ function toggleTableVis(){
 
   var labGrid = $('#cumulativeLab')[0]
   var loadingText = $('#loadingDiv')[0]
- 	//labGrid.hidden = !labGrid.hidden
-  //loadingText.hidden = !loadingText.hidden
+ 	labGrid.hidden = !labGrid.hidden
+  loadingText.hidden = !loadingText.hidden
 }
 //------------------------------------------------------------------------------------------------------------------------------------------- Major code section part 2, data manipulation
 //wait for all labs data to be loaded before modifying and putting colors around it.
@@ -698,7 +698,7 @@ function labTextMod(){
 
   //console.log(topDates)
 
-  setTimeout(function(){ colorDates() },250); //********************
+  setTimeout(function(){ colorDates() },250);
 }
 
 function checkDoneLabTextMod(){
@@ -832,7 +832,7 @@ function SortArea(){
 function checkRange(){
   console.log("check range")
 	var LabDateRawArr = $('div[id*=preventionProcedure]')
-  console.log(LabDateRawArr)
+  //console.log(LabDateRawArr)
 
 	console.log("check if labs in rage")
   for (var i=0; i<LabDateRawArr.length; i++){
