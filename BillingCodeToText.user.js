@@ -69,7 +69,7 @@ function main(){
       if(BillingFormBox.options[i].text == "PCN") {
         BillingFormBox.selectedIndex = i;
         var event = new Event('change');
-        //BillingFormBox.dispatchEvent(event);
+        BillingFormBox.dispatchEvent(event);
         break;
       }
     }
