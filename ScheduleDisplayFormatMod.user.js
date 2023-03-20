@@ -6,11 +6,12 @@
 // @include     *provideradminday.jsp?*displaymode=day*
 // @require     https://code.jquery.com/jquery-3.6.0.js
 // @grant       GM_addStyle
-// @version	    23.03.15.2
+// @version	    23.03.19.1
 // ==/UserScript==
 
 
 //Changelog
+// 23.03.19.0: changed the formatting a bit. Didn't like the bold and extra spaces
 // 23.03.15.0: ORIGINAL BUILD: Makes the appointment name/reason/buttons on separate lines
 
 
@@ -46,14 +47,16 @@ window.addEventListener('load', function() {
 
     //apptReason.replace(/&nbsp;/g, "");
     //console.log ("--------------------------")
-    console.log(apptBefore)
-    console.log(apptReason)
-    console.log(apptAfter)
+    //console.log(apptBefore)
+    //console.log(apptReason)
+    //console.log(apptAfter)
 
 
-
-    apptReason = "<br><strong>" + apptReason + "</strong><br>"
-    //apptReason = "<br><b>" + apptReason + "</b><br>"
+    apptReason = apptReason.substring(apptReason.indexOf(";")+1)
+    //console.log(apptReason)
+    //apptReason = "<br><strong>" + apptReason + "</strong><br>"
+    apptReason = "<br>" + apptReason + "<br>"
+    //apptReason.trim()
 
 
     var apptHTMLNew = apptBefore + apptReason + apptAfter
