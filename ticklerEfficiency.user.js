@@ -6,10 +6,11 @@
 // @include     *ForwardDemographicTickler.do?*
 // @require     https://code.jquery.com/jquery-3.6.0.js
 // @grant       GM_addStyle
-// @version	    23.02.12.0
+// @version	    23.03.20.1
 // ==/UserScript==
 
 //Changelog
+//23.03.20.1 - changed code for submit button as it was renamed
 //23.02.12.0 - modified for quipo: default tickler person plus Event Change to make sure it works
 //Jan 3, 2022 - change ID to surrey ID for tickling self
 //Dec 31 2022 - make it default to surrey and TCI
@@ -66,7 +67,7 @@ document.addEventListener('keydown', function(theEvent) {
   switch(true){
       //Acknowledge  button
     case theAltKey && theKey==='1':
-      var subButton = $('input[type="button"][value*=Submit][value*=EXIT]')
+      var subButton = $('input[type="button"][value*=Add][value*=EXIT]')
       subButton.click()
 			break;
 
@@ -90,7 +91,7 @@ function setdefault(){
   console.log(LocationAssign)
   LocationAssign.value = "Surrey"
 
-  //activates the change event. 
+  //activates the change event.
   var changeEvent = new Event("change");
   LocationAssign.dispatchEvent(changeEvent);
 
