@@ -6,19 +6,28 @@
 // @include     *provideradminday.jsp?*displaymode=day*
 // @require     https://code.jquery.com/jquery-3.6.0.js
 // @grant       GM_addStyle
-// @version	    23.03.19.1
+// @version	    23.03.19.2
 // ==/UserScript==
 
 
 //Changelog
-// 23.03.19.0: changed the formatting a bit. Didn't like the bold and extra spaces
+// 23.03.19.2: Changed it so all appointsments are selected when mulitple doctor schedules are visible
+// 23.03.19.1: changed the formatting a bit. Didn't like the bold and extra spaces
 // 23.03.15.0: ORIGINAL BUILD: Makes the appointment name/reason/buttons on separate lines
 
 
 window.addEventListener('load', function() {
 
-  var apptDescriptionArray = document.querySelectorAll('[class=reason_133hideReason]')
-  //console.log(apptDescriptionArray)
+  //check if the schedule view is multiple docs or just 1 doc. layout differs
+  var multiProviders = false
+  var providersCount = document.querySelectorAll('[id=providertable]')
+  console.log(providersCount)
+  if (providersCount.length>1){
+    multiProviders = true
+  }
+
+  var apptDescriptionArray = document.querySelectorAll('[class^=reason_][class$=hideReason]')
+  console.log(apptDescriptionArray)
 
   for (var i = 0; i < apptDescriptionArray.length; i++){  //apptDescriptionArray.length
     var apptSelected = apptDescriptionArray[i]
@@ -53,10 +62,12 @@ window.addEventListener('load', function() {
 
 
     apptReason = apptReason.substring(apptReason.indexOf(";")+1)
-    //console.log(apptReason)
-    //apptReason = "<br><strong>" + apptReason + "</strong><br>"
-    apptReason = "<br>" + apptReason + "<br>"
-    //apptReason.trim()
+
+    //when there's multiple providers then don't do anything besides remove <strong>
+    //when only single provider layout is differnt in 1 line so needs the <br> added
+    if (multiProviders == false){
+      apptReason = "<br>" + apptReason + "<br>"
+    }
 
 
     var apptHTMLNew = apptBefore + apptReason + apptAfter
