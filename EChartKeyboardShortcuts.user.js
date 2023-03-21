@@ -5,10 +5,11 @@
 // @include        */casemgmt/forward.jsp?action=view&demographic*
 // @require     https://code.jquery.com/jquery-3.6.0.js
 // @grant       GM_addStyle
-// @version			22.08.03.1
+// @version			23.03.20.1
 // ==/UserScript==
 
 //changelog
+//23.03.20.1: modified so medication shortcut works again alt+Q
 //23.02.12.1: quipo update: sign and save button
 
 
@@ -52,8 +53,9 @@ document.addEventListener('keydown', function(theEvent) {
 	switch(true){
 
      case theAltKey && theKey==='q': //Show med list
- 			var icon = $('#Rx > div:first > div:first > h3:first > a:first')[0] // > div:nth-child(1) > h3:nth-child(1) > a:nth-child(1)')
-      icon.click()
+ 			var medsButton = document.querySelector('div[id*=menuTitleRx]')
+      medsButton = medsButton.nextElementSibling.children[0].children[0]
+      medsButton.click()
 			break;
 
 
