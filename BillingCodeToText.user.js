@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name        Billing Code Conversion + Selection of corrent forms + Move Dx box
+// @name        Billing Code Conversion + Move Dx box
 // @namespace   GongOscar
 // @description Constant EForm Submit and Print button locations
 // @include     *billing.do?billRegion*
@@ -10,10 +10,11 @@
 // @include     *formwcb.do?*
 // @require     https://code.jquery.com/jquery-3.6.0.js
 // @grant       GM_addStyle
-// @version 	  23.03.20.1
+// @version 	  23.03.20.3
 // ==/UserScript==
 
 //changelog
+//23.03.20.3 - removed the corrent drop down selection of PCN. clarificaion and location. Options added to quipo native
 //23.03.20.1 - moved the diagonstics box to the middle as it keeps cutting off while billing normally
 //23.03.19.1 - updated to quipo. added to set default billing form, clarification code and service location
 
@@ -38,7 +39,7 @@ function main(){
     codeList[i].text = "- " + title + dxCode
 		codeList[i].title = dxCode
 	}
-
+ /*
   //Change the clarification code and service locations
   var ClarificationBox
   var LocationBox
@@ -75,7 +76,7 @@ function main(){
       }
     }
   }
-
+*/
   //Moving the Diagnosis Box to the center column instead
   var DxBox = document.querySelectorAll('[id=pop2]')[0]
   DxBox = DxBox.parentNode;
