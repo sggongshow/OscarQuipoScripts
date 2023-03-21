@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name        Billing Code Conversion + Selection off corrent forms
+// @name        Billing Code Conversion + Selection of corrent forms + Move Dx box
 // @namespace   GongOscar
 // @description Constant EForm Submit and Print button locations
 // @include     *billing.do?billRegion*
@@ -10,10 +10,11 @@
 // @include     *formwcb.do?*
 // @require     https://code.jquery.com/jquery-3.6.0.js
 // @grant       GM_addStyle
-// @version 	  23.03.19.1
+// @version 	  23.03.20.0
 // ==/UserScript==
 
 //changelog
+//23.03.20.1 - moved the diagonstics box to the middle as it keeps cutting off while billing normally
 //23.03.19.1 - updated to quipo. added to set default billing form, clarification code and service location
 
 //wait window load first
@@ -75,6 +76,21 @@ function main(){
     }
   }
 
+  //Moving the Diagnosis Box to the center column instead
+  var DxBox = document.querySelectorAll('[id=pop2]')[0]
+  DxBox = DxBox.parentNode;
 
+  var tbodycount = 0 //Nested in 2 tables. so to move the entire Dx box needs to go up 2 tables
+  while(tbodycount !=2){
+    while (DxBox.parentNode.tagName !== 'TABLE') {
+      DxBox = DxBox.parentNode;
+    }
+    DxBox=DxBox.parentNode
+    tbodycount++
+  }
+  console.log(DxBox)
+
+  var CenterBox = document.querySelectorAll('[class="serviceCodesTable"]')[1]
+  CenterBox.parentNode.appendChild(DxBox)
 
 }
