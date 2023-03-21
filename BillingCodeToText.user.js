@@ -10,7 +10,7 @@
 // @include     *formwcb.do?*
 // @require     https://code.jquery.com/jquery-3.6.0.js
 // @grant       GM_addStyle
-// @version 	  23.03.20.0
+// @version 	  23.03.20.1
 // ==/UserScript==
 
 //changelog
