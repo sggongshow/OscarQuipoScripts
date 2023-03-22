@@ -1,15 +1,16 @@
 // ==UserScript==
-// @name        Tickler Efficiency
+// @name        New-Tickler Efficiency
 // @namespace   GongOscar
 // @description Tickler default task and selects text box/ default tickler person as well
 // @include     */ticklerAdd.jsp?*
 // @include     *ForwardDemographicTickler.do?*
 // @require     https://code.jquery.com/jquery-3.6.0.js
 // @grant       GM_addStyle
-// @version	    23.03.20.1
+// @version	    23.03.21.2
 // ==/UserScript==
 
 //Changelog
+//23.03.21.2 - removed quick date clicking as it's shown by default now. 
 //23.03.20.1 - changed code for submit button as it was renamed
 //23.02.12.0 - modified for quipo: default tickler person plus Event Change to make sure it works
 //Jan 3, 2022 - change ID to surrey ID for tickling self
@@ -21,8 +22,6 @@ var myIDNum = '133'
 
 window.addEventListener('load', function() {
 
-
-  $('a[title="Show/Hide Date Quickpick Options"]')[0].click()
 
   var MeBut = document.createElement('input');
   MeBut.type = 'button';
@@ -88,7 +87,7 @@ document.addEventListener('keydown', function(theEvent) {
 
 function setdefault(){
   var LocationAssign = $('select[name=site]')[0]
-  console.log(LocationAssign)
+  //console.log(LocationAssign)
   LocationAssign.value = "Surrey"
 
   //activates the change event.
