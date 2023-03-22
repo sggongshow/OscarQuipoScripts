@@ -6,11 +6,12 @@
 // @include     *provideradminday.jsp?*displaymode=day*
 // @require     https://code.jquery.com/jquery-3.6.0.js
 // @grant       GM_addStyle
-// @version	    23.03.19.2
+// @version	    23.03.20.1
 // ==/UserScript==
 
 
 //Changelog
+// 23.03.20.1: quipo changed format. adjusted code. Essentially remove bolding of things
 // 23.03.19.2: Changed it so all appointsments are selected when mulitple doctor schedules are visible
 // 23.03.19.1: changed the formatting a bit. Didn't like the bold and extra spaces
 // 23.03.15.0: ORIGINAL BUILD: Makes the appointment name/reason/buttons on separate lines
@@ -66,7 +67,7 @@ window.addEventListener('load', function() {
     //when there's multiple providers then don't do anything besides remove <strong>
     //when only single provider layout is differnt in 1 line so needs the <br> added
     if (multiProviders == false){
-      apptReason = "<br>" + apptReason + "<br>"
+      //apptReason = "<br>" + apptReason + "<br>"
     }
 
 
