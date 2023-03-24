@@ -6,11 +6,12 @@
 // @include     *ForwardDemographicTickler.do?*
 // @require     https://code.jquery.com/jquery-3.6.0.js
 // @grant       GM_addStyle
-// @version	    23.03.21.2
+// @version	    23.03.24.1
 // ==/UserScript==
 
 //Changelog
-//23.03.21.2 - removed quick date clicking as it's shown by default now. 
+//23.03.24.1 - changed auto populate site to surrey again. was options renamed recently
+//23.03.21.2 - removed quick date clicking as it's shown by default now.
 //23.03.20.1 - changed code for submit button as it was renamed
 //23.02.12.0 - modified for quipo: default tickler person plus Event Change to make sure it works
 //Jan 3, 2022 - change ID to surrey ID for tickling self
@@ -88,7 +89,7 @@ document.addEventListener('keydown', function(theEvent) {
 function setdefault(){
   var LocationAssign = $('select[name=site]')[0]
   //console.log(LocationAssign)
-  LocationAssign.value = "Surrey"
+  LocationAssign.value = "TLC Medical Clinic -Surrey"
 
   //activates the change event.
   var changeEvent = new Event("change");
