@@ -7,13 +7,14 @@
 // @include     *lab/CA/ALL/labDisplay.jsp?*
 // @require     https://code.jquery.com/jquery-3.6.0.js
 // @grant       GM_addStyle
-// @version			23.03.28.1
+// @version			23.03.28.2
 // ==/UserScript==
 //window.moveTo(300, 100)
 
 
 //Changelog
-//23.03.28.1 - changed position of buttons to stop blocking things due to quipo format changes 
+//23.03.28.2 - fixed the echart button to work again
+//23.03.28.1 - changed position of buttons to stop blocking things due to quipo format changes
 
  ///FOR TICKLER KEYBOARD SHORTCUT TO BE ENABLED
 
@@ -43,7 +44,7 @@ document.addEventListener('keydown', function(theEvent) {
 
       //Echart
     case theAltKey && theKey==='3':
- 			showAlert2()
+ 			OpenEchartFunc()
 			break;
 
     case theAltKey && theKey==='q': //back page
@@ -171,7 +172,7 @@ input.setAttribute('style', 'width:80px;font-size:16px;z-index:1;position:fixed;
 }
 
 document.body.appendChild(input);
-function showAlert()
+function showAlert() //acknowledge
 {
   //Covering the dumb various codings of the acknowledge button
 
@@ -242,6 +243,9 @@ input1.setAttribute('style', 'width:80px;font-size:16px;z-index:1;position:fixed
 input1.setAttribute('style', 'width:80px;font-size:16px;z-index:1;position:fixed;top:60px;right:10px; background-color:#FF6600;');
 }
 document.body.appendChild(input1);
+
+
+  // Open tickler
 function showAlert1()
 {
   var button = $('input[type="button"][value="Tickler"]')
@@ -254,20 +258,29 @@ function showAlert1()
 var input2 = document.createElement('input');
 input2.type = 'button';
 input2.value = 'Echart';
-input2.onclick = showAlert2;
+input2.onclick = OpenEchartFunc;
 if (window.location.pathname.includes("labDisplay.jsp")){
 input2.setAttribute('style', 'width:80px;font-size:16px;z-index:1;position:fixed;top:40px;left:560px;');
 }else{
 input2.setAttribute('style', 'width:80px;font-size:16px;z-index:1;position:fixed;top:90px;right:10px;');
 }
 document.body.appendChild(input2);
-function showAlert2()
+
+
+// Open Chart Function
+function OpenEchartFunc()
 {
+  /*
   var button = $('input[type="button"][value*="Chart"]')
   var parentId = $(button).closest('form').attr('id')
   if (parentId.includes('acknowledge')){
   	button.click()
   }
+  */
+
+  var echartButton = document.querySelector('[onclick*=searchPatientWindow]')
+  console.log("echartButton")
+  echartButton.click()
 
 }
 
