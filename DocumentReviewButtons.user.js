@@ -7,12 +7,13 @@
 // @include     *lab/CA/ALL/labDisplay.jsp?*
 // @require     https://code.jquery.com/jquery-3.6.0.js
 // @grant       GM_addStyle
-// @version			23.03.28.2
+// @version			23.03.28.3
 // ==/UserScript==
 //window.moveTo(300, 100)
 
 
 //Changelog
+//23.03.28.3 - fixed the echart button to work AGAIN - on showDocument.jsp due to broken stuff on quipo
 //23.03.28.2 - fixed the echart button to work again
 //23.03.28.1 - changed position of buttons to stop blocking things due to quipo format changes
 
@@ -279,7 +280,13 @@ function OpenEchartFunc()
   */
 
   var echartButton = document.querySelector('[onclick*=searchPatientWindow]')
-  console.log("echartButton")
+
+
+  if (echartButton == null){
+    //stupid ass issue on showDocument.jsp where Echart is broken. Workaround
+    echartButton = document.querySelectorAll('[onclick*=IncomingEncounter]')[1]
+  }
+  console.log(echartButton)
   echartButton.click()
 
 }
