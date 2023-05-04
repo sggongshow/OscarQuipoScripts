@@ -4,11 +4,12 @@
 // @include     *lab/CumulativeLabValues.jsp*
 // @require     https://code.jquery.com/jquery-3.6.0.js
 // @grant       GM_addStyle
-// @version 	23.03.18.2
+// @version 	23.05.04.1
 // ==/UserScript==
 //========Get Path============
 
 //Changelog
+//23.05.04.1 - added "breast" to filter out mammograms pdfs in labs. 
 //23.03.18.0 - PROGRAMMED FOR QUIPO - problems with lab range as connected with text with no spacing. fixed. with regex
 //22.12.08.1 - programmed for new vanilla oscar19
 //- note, Getdate() will need to be modified depending on date format. curretly unchanged until vanilla oscar19 runnig
@@ -438,7 +439,7 @@ function Cumulative() {
 //Removed lines that are weird info and not labs
 function removeUnwanted() {
   		//console.log('remove unwanted')
-  		var unwantedWords = ['physician', 'report', 'history', 'notification', 'consultation',
+  		var unwantedWords = ['physician', 'report', 'history', 'notification', 'consultation', 'breast',
                            'other','colonoscopy','pathology','surgical','operation', 'discharge','date','referred'] //'exam'
       for (i = myLabArray.length -1  ; i >= 0 ; i--) {
 				var toDelete = 0
