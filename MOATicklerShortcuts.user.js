@@ -5,10 +5,11 @@
 // @include     */ticklerMain.jsp*
 // @require     https://code.jquery.com/jquery-3.6.0.js
 // @grant       GM_addStyle
-// @version	23.03.17.6
+// @version	    23.05.08.1
 // ==/UserScript==
 
 //changelog
+// 23.05.08.1 - Added Dr. Lo button
 // 23.03.17.6 - Added Dr. Chan button + default sort by Date + moved all high ticklers to top
 // 23.03.15.0 - added Dr. Gong's button
 
@@ -17,6 +18,7 @@ var HoneyID = 135
 var TCISurreyID = 34
 var GongID = 133
 var ChanID = 134
+var LoID= 157
 var urlPath = ('https://' + location.host + window.location.pathname + '?')
 
 var table;
@@ -62,6 +64,15 @@ window.addEventListener('load', function() {
   ChanBut.onclick = ChanHighButFunc;
   ChanBut.setAttribute('style', 'width:100px;font-size:12px;padding:0px; background-color:PeachPuff;');
 	AppendingParagraph.appendChild(ChanBut);
+
+  var LoBut = document.createElement('input');
+  LoBut.type = 'button';
+  LoBut.id = 'LoHighBut'
+  LoBut.name = 'LoHighBut'
+  LoBut.value = 'Lo Ticklers'
+  LoBut.onclick = LoButFunc;
+  LoBut.setAttribute('style', 'width:100px;font-size:12px;padding:0px; background-color:Pink;');
+	AppendingParagraph.appendChild(LoBut);
 
   pushHighUp()
 
@@ -156,6 +167,13 @@ function GongHighButFunc(){
 
 function ChanHighButFunc(){
   var newURL = (urlPath + "assignedTo=" + ChanID + "&Submit=Create+Report&sort_order=asc&sort_column=service_date")
+    console.log(newURL)
+  window.location.href = newURL
+
+}
+
+function LoButFunc(){
+  var newURL = (urlPath + "assignedTo=" + LoID + "&Submit=Create+Report&sort_order=asc&sort_column=service_date")
     console.log(newURL)
   window.location.href = newURL
 
