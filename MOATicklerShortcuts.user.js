@@ -5,16 +5,16 @@
 // @include     */ticklerMain.jsp*
 // @require     https://code.jquery.com/jquery-3.6.0.js
 // @grant       GM_addStyle
-// @version	    23.05.08.1
+// @version	    23.05.31.1
 // ==/UserScript==
 
 //changelog
+// 23.05.31.1 - removed Honey
 // 23.05.08.1 - Added Dr. Lo button
 // 23.03.17.6 - Added Dr. Chan button + default sort by Date + moved all high ticklers to top
 // 23.03.15.0 - added Dr. Gong's button
 
 
-var HoneyID = 135
 var TCISurreyID = 34
 var GongID = 133
 var ChanID = 134
@@ -28,15 +28,6 @@ window.addEventListener('load', function() {
 
   var AppendingParagraph = $("[name=serviceform]")[0]
   //AppendingParagraph = AppendingParagraph.parentElement.previousElementSibling
-
-  var honeyBut = document.createElement('input');
-  honeyBut.type = 'button';
-  honeyBut.id = 'honeyBut'
-  honeyBut.name = 'honeyBut'
-  honeyBut.value = 'Honey Ticklers'
-  honeyBut.onclick = honeyButFunc;
-  honeyBut.setAttribute('style', 'width:100px;font-size:12px;padding:0px; background-color:cyan;');
-	AppendingParagraph.appendChild(honeyBut);
 
   var TCISurreyBut = document.createElement('input');
   TCISurreyBut.type = 'button';
@@ -145,11 +136,6 @@ function pushHighUp(){
 
 }
 
-function honeyButFunc(){
-  var newURL = urlPath + "assignedTo=" + HoneyID + "&Submit=Create+Report&sort_order=asc&sort_column=service_date"
-  //console.log(newURL)
-  window.location.href = newURL
-}
 
 function TCISurreyButFunc(){
   var newURL = (urlPath + "assignedTo=" + TCISurreyID + "&Submit=Create+Report&sort_order=asc&sort_column=service_date")
