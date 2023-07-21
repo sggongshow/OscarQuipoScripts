@@ -3,6 +3,7 @@
 // @namespace   GongOscar
 // @description Consult Referal Addons
 // @include     */ConsultationFormRequest.jsp*
+// @include     *ViewRequest.do?*
 // @require     https://code.jquery.com/jquery-3.6.0.js
 // @grant       GM_addStyle
 // @version			23.07.19.0
