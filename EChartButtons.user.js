@@ -6,11 +6,12 @@
 // @grant       GM_addStyle
 // @grant 	GM_openInTab
 // @include     */casemgmt/forward.jsp?action=view&demographic*
-// @version     23.02.12.0
+// @version     23.08.11.0
 // ==/UserScript==
 //window.moveTo(300, 100)
 //
-//changelog 
+//changelog
+//23.08.11.0 - added auto encouter date to note 
 //23.02.12.0 - re-enabled lab grid for quipo
 //23.01.10.1 - changed to surrey imaging req and lifelabs
 //22.12.08.0 - lab grid dead. looonnng wait due to well health. disabled
@@ -42,7 +43,7 @@ function getCookie(cname)
 var myWindow = ''
 var elements = (window.location.pathname.split('/', 2))
 firstElement = (elements.slice(1)) //alert(firstElement)
-vPath = ('https://' + location.host + '/' + firstElement + '//') 
+vPath = ('https://' + location.host + '/' + firstElement + '//')
 //console.log(elements)
 
 var splitApptNum = window.location.toString().split("appointmentNo")[1]
@@ -50,7 +51,7 @@ var ApptNum = splitApptNum.split("=")[1].split("&")[0]
 if (ApptNum.length<1){
 	ApptNum = 0
 }
-  
+
 console.log(elements)
 
 
@@ -70,7 +71,7 @@ function showAlert()
   $('#menu3 > a:nth-child(12)').click()
   //window.open(vPath + "/oscarEncounter/oscarMeasurements/SetupMeasurements.do?groupName=INR%20Management")
     window.open(vPath + "/oscarEncounter/oscarMeasurements/SetupDisplayHistory.do?type=INR","", "width=1000,height=600,left=50,top=400")
-} 
+}
 // INSERT YOU OWN MEASUREMENT UNIQUE SELECTOR  HERE
 var input1 = document.createElement('input');
 input1.type = 'button';
@@ -275,11 +276,11 @@ input11.value = 'Save&Exit';
 input11.onclick = showAlert11;
 input11.setAttribute('style', 'width:80px;font-size:16px;z-index:1;position:fixed;bottom:120px;right:140px;background-color: lime;border-radius: 30px;');
 document.body.appendChild(input11);
-function showAlert11() 
+function showAlert11()
 //{(document.evaluate("id('save')/span/input[contains(@src,'verify-sign.png')]",document,null,XPathResult.FIRST_ORDERED_NODE_TYPE,null).singleNodeValue).click();}
 //{(document.evaluate("id('save')/span/input[contains(@src,'dollar-sign-icon.png')]",document,null,XPathResult.FIRST_ORDERED_NODE_TYPE,null).singleNodeValue).click();}
 {
- 
+
   //$('#input2').click()
 //  $('#save > span:nth-child(1) > input:nth-child(5)').click()
   $('#save > span > input:nth-child(6)').click()
@@ -420,7 +421,7 @@ function showAlert18()
   var demo_no = myParam.substring(0, res) //alert (demo_no)
   var formPath = vPath + '/eform/efmformadd_data.jsp?fid=458&demographic_no=' + demo_no // INSERT YOU OWN form ID (fid=??) here
   //alert(formPath)
-  window.open(formPath) 
+  window.open(formPath)
 }
 var input19 = document.createElement('input');
 input19.type = 'button';
@@ -434,7 +435,7 @@ function showAlert19()
   var formPath = vPath + 'oscarEncounter/oscarMeasurements/SetupMeasurements.do?groupName=CDM%20Labs'
   $('#menu3 > a:nth-child(4)').click()
  // $('#menu3 > a:nth-child(6)').click()
-  //myWindow = window.open(formPath) 
+  //myWindow = window.open(formPath)
 }
 */
 var input180 = document.createElement('input');
@@ -446,7 +447,7 @@ input180.setAttribute('style', 'font-size:16px;z-index:1;position:fixed;bottom: 
 function showAlert180()
 {
   window.open(vPath + 'oscarEncounter/oscarMeasurements/TemplateFlowSheet.jsp?demographic_no='+demo_no+'&template=diab2')
-}   
+}
 
 
 //----------------------------------------------------------------------
@@ -463,19 +464,19 @@ function main(){
   var noteDate =  noteText.split(':')[0]
   var noteExtra = " " + noteText.substring(noteText.indexOf(':')+1)
   var alreadyWriting = noteText.substring(noteText.indexOf(']'))
- 
+
   //console.log(noteText)
   //console.log(noteDate)
   //console.log(noteExtra)
-  
-  
+
+
   var today = new Date().toString()
   var todayArr = today.split(' ')
   var day = todayArr[2]
   var month = todayArr[1]
   var year = todayArr[3]
   var newDateString = '[' + day + '-' + month + '-' + year + ' :' + noteExtra
-  
+
   if (alreadyWriting.length < 20){
     console.log("Note is considered blank")
 	  newestNote.value = newDateString
@@ -484,7 +485,7 @@ function main(){
   //console.log(newDateString)
   //console.log(newestNote)
   //console.log(noteText)
-  
+  autoEncouterDate()
 }
 
 function waitForNote() {
@@ -497,7 +498,7 @@ function waitForNote() {
     setTimeout(function() {
       waitForNote()
     }, 200);
-    
+
   } else {
     //console.log('found thing')
     main()
@@ -514,6 +515,27 @@ window.addEventListener('load', function() {
 
 }, false);
 
+
+//----------------------------------------------------------------------
+//----------------------------------------------------------------------
+//----------------------------------------------------------------------
+// FOR ENCOUTER DATE, Auto put in correct date + time.
+
+function autoEncouterDate(){
+  var dateVar = document.getElementById("observationDate")
+
+  const currentDate = new Date();
+
+  var day = String(currentDate.getDate()).padStart(2, '0');
+  var month = currentDate.toLocaleString('default', { month: 'short' });
+  var year = currentDate.getFullYear();
+  var hours = String(currentDate.getHours()).padStart(2, '0');
+  var minutes = String(currentDate.getMinutes()).padStart(2, '0');
+
+  var formattedDate = `${day}-${month}-${year} ${hours}:${minutes}`;
+
+  dateVar.value = formattedDate
+}
 
 
 
