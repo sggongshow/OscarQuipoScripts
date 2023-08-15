@@ -4,12 +4,12 @@
 // @include     *lab/CumulativeLabValues.jsp*
 // @require     https://code.jquery.com/jquery-3.6.0.js
 // @grant       GM_addStyle
-// @version 	23.08.15.0
+// @version 	23.08.15.1
 // ==/UserScript==
 //========Get Path============
 
 //Changelog
-//23.08.15.0 - added 'holter' to removeUnwanted function
+//23.08.15.1 - added 'holter', 'mammo' to removeUnwanted function
 //23.07.28.0 - added 'ecg' to removeUnwanted function
 //23.05.04.1 - added "breast" to filter out mammograms pdfs in labs. 
 //23.03.18.0 - PROGRAMMED FOR QUIPO - problems with lab range as connected with text with no spacing. fixed. with regex
@@ -441,8 +441,9 @@ function Cumulative() {
 //Removed lines that are weird info and not labs
 function removeUnwanted() {
   		//console.log('remove unwanted')
-  		var unwantedWords = ['physician', 'report', 'history', 'notification', 'consultation', 'breast', 'holter',
-                           'other','colonoscopy','pathology','surgical','operation', 'discharge','date','referred','ecg'] //'exam'
+  		var unwantedWords = ['physician', 'report', 'history', 'notification', 'consultation', 'breast', 
+				     'holter', 'mammo', 'other','colonoscopy','pathology',
+                           	     'surgical','operation', 'discharge','date','referred','ecg'] //'exam'
       for (i = myLabArray.length -1  ; i >= 0 ; i--) {
 				var toDelete = 0
     		for (j = 0; j < unwantedWords.length; j++) {
