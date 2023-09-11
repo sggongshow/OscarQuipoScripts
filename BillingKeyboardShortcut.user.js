@@ -10,10 +10,11 @@
 // @include     *formwcb.do?*
 // @require     https://code.jquery.com/jquery-3.6.0.js
 // @grant       GM_addStyle
-// @version	    23.09.08.1
+// @version	    23.09.11.1
 // ==/UserScript==
 
 //changelog
+//23.09.11.1: changed BillingCodeArray search as problems with autopopulating times with Daycode. (need to check if works in all computers)
 //23.09.08.1: removed *billingDigNewSearch.jsp?* inclusion as causing errors in Diag Code selection pate. made separate script for that page
 //23.01.23.2: added contracted hours shift codes to auto populate (97570) the start and end times
 
@@ -25,8 +26,8 @@ window.addEventListener('load', function() {
   var textBox = $('textarea[name="textarea"]')
   textBox.select()
 
-  BillingCodeArray = $("[id*='billing']").filter("[id$='fee']")
-
+  //BillingCodeArray = $("[id*='billing']").filter("[id$='fee']")
+  BillingCodeArray = document.querySelectorAll("[name*='xml_other']")
 
 
   //console.log(BillingCodeArray)
@@ -46,14 +47,26 @@ document.addEventListener('keydown', function(theEvent) {
       //console.log("alt1 pressed")
       //console.log(BillingCodeArray.length)
       var find97570 = true
-      for (let element of BillingCodeArray){
-        //console.log(element.value)
+      for (var i = 0; i < BillingCodeArray.length; i++){
+        var element = BillingCodeArray[i]
+        console.log(element.value)
         if (element.value.includes("97570")){
-          //console.log("97570 code found")
-          autoTimeInput(element)
+          console.log("97570 code found")
+          autoTimeInput(BillingCodeArray[i+1])
+          break
+        }
+      }
+
+      /*
+      for (let element of BillingCodeArray){
+        console.log(element.value)
+        if (element.value.includes("97570")){
+          console.log("97570 code found")
+          autoTimeInput(BillingCodeArray[element+1])
           break
         }
       };
+      */
 
       hitSubmit()
 			break;
@@ -68,8 +81,8 @@ document.addEventListener('keydown', function(theEvent) {
 // add the automatic hours when the hours submission code is seen of  97570
 function autoTimeInput(serviceCodeElement){
   //console.log("autotime input")
-  var serviceCodeUnitID = serviceCodeElement.id + "_unit"
-  //console.log(serviceCodeUnitID)
+  var serviceCodeUnitID = serviceCodeElement.id
+  console.log(serviceCodeUnitID)
   var serviceCodeUnitElement = $(`[${"id"}="${serviceCodeUnitID}"]`)[0];
   //var serviceCodeUnitElement = document.getElementById(serviceCodeUnitID); //does the same thing
   var hours = Number(serviceCodeUnitElement.value)/4;
