@@ -6,11 +6,12 @@
 // @grant       GM_addStyle
 // @grant 	GM_openInTab
 // @include     */casemgmt/forward.jsp?action=view&demographic*
-// @version     23.08.11.0
+// @version     23.11.10.0
 // ==/UserScript==
 //window.moveTo(300, 100)
 //
 //changelog
+//23.11.10.0 - changed CVD eform FID to new one
 //23.08.11.0 - added auto encouter date to note 
 //23.02.12.0 - re-enabled lab grid for quipo
 //23.01.10.1 - changed to surrey imaging req and lifelabs
@@ -312,7 +313,7 @@ function showAlert13()
   var res = myParam.indexOf('&')
   var demo_no = myParam.substring(0, res) //alert (demo_no)
   // INSERT YOU OWN form ID (fid=??) here
-  var formPath = vPath + '/eform/efmformadd_data.jsp?fid=775&demographic_no=' + demo_no + '&appointment=' + ApptNum//alert(formPath)
+  var formPath = vPath + '/eform/efmformadd_data.jsp?fid=1356&demographic_no=' + demo_no + '&appointment=' + ApptNum//alert(formPath)
   window.open(formPath, 'Popup_Window7', 'toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=0,width=1000,height=800,left = 312,top = 234');
 }
 var input14 = document.createElement('input');
