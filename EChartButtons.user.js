@@ -6,11 +6,12 @@
 // @grant       GM_addStyle
 // @grant 	GM_openInTab
 // @include     */casemgmt/forward.jsp?action=view&demographic*
-// @version     23.11.10.0
+// @version     23.12.04.0
 // ==/UserScript==
 //window.moveTo(300, 100)
 //
 //changelog
+//23.12.04.0 - updated Dr Note FID
 //23.11.10.0 - changed CVD eform FID to new one
 //23.08.11.0 - added auto encouter date to note 
 //23.02.12.0 - re-enabled lab grid for quipo
@@ -145,7 +146,7 @@ function showAlert6()
   var myParam = location.search.split('demographicNo=') [1] //alert(myParam)
   var res = myParam.indexOf('&')
   var demo_no = myParam.substring(0, res) //alert (demo_no)
-  var formPath = vPath + '/eform/efmformadd_data.jsp?fid=1157&demographic_no=' + demo_no // INSERT YOU OWN form ID (fid=??) here
+  var formPath = vPath + '/eform/efmformadd_data.jsp?fid=1362&demographic_no=' + demo_no // INSERT YOU OWN form ID (fid=??) here
   //alert(formPath)
   window.open(formPath,'Popup_Window2', 'width=800,height=800,left = 0,top = 0')
 }
