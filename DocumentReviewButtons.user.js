@@ -7,12 +7,13 @@
 // @include     *lab/CA/ALL/labDisplay.jsp?*
 // @require     https://code.jquery.com/jquery-3.6.0.js
 // @grant       GM_addStyle
-// @version			23.05.04.2
+// @version			24.01.07.1
 // ==/UserScript==
 //window.moveTo(300, 100)
 
 
 //Changelog
+//24.01.07.1 - fixed changed in acknowledge button value from "acknowledge to Acknowledge"
 //23.05.04.2 - fixed echart button again on showDocument
 //23.03.28.3 - fixed the echart button to work AGAIN - on showDocument.jsp due to broken stuff on quipo
 //23.03.28.2 - fixed the echart button to work again
@@ -229,7 +230,7 @@ function showAlert() //acknowledge
 
   //console.log(button)
   var parentId = $(button).closest('form').attr('id');
-  if (parentId.includes('acknowledge')){
+  if (parentId.includes('Acknowledge')){
   	button.click()
     //closeButton.click()
   }
