@@ -10,10 +10,11 @@
 // @include     *formwcb.do?*
 // @require     https://code.jquery.com/jquery-3.6.0.js
 // @grant       GM_addStyle
-// @version 	  23.03.21.0
+// @version 	  24.01.13.0
 // ==/UserScript==
 
 //changelog
+//24.01.13.0 - change default form to LFP from PCN
 //23.03.21.0 - reverted to 23.03.20.3 - parts of billing still broken
 //23.03.20.3 - removed the corrent drop down selection of PCN. clarificaion and location. Options added to quipo native
 //23.03.20.1 - moved the diagonstics box to the middle as it keeps cutting off while billing normally
@@ -66,10 +67,10 @@ function main(){
   var BillingFormBox = document.querySelector('[id=selectBillingForm]')
   //console.log(BillingFormBox)
 
-  if (BillingFormBox.options[BillingFormBox.selectedIndex].text !="PCN"){
+  if (BillingFormBox.options[BillingFormBox.selectedIndex].text !="LFP"){
     for(var i = 0; i < BillingFormBox.options.length; i++) {
 
-      if(BillingFormBox.options[i].text == "PCN") {
+      if(BillingFormBox.options[i].text == "LFP") {
         BillingFormBox.selectedIndex = i;
         var event = new Event('change');
         BillingFormBox.dispatchEvent(event);
