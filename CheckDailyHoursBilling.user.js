@@ -6,10 +6,10 @@
 // @include     *provideradminday.jsp?*displaymode=day*
 // @require     https://code.jquery.com/jquery-3.6.0.js
 // @grant       GM_addStyle
-// @version	    24.01.15.0
+// @version	    24.01.15.1
 // ==/UserScript==
 
-//24.01.15.0: updated with LFP buttons
+//24.01.15.1: updated with LFP buttons
 //23.02.12.0: quipo update: changed URL details so provider info + date are accurate
 //23.02.06.0: fixed billing date so it's same date as visit, not current date
 //23.02.02.0 : updated @include another .jsp that oscar sometimes uses
@@ -96,7 +96,7 @@ function changeButton(){
     checkButtonLFP1.disabled = "true"
   }else{
     checkButtonLFP1.value = "98010 NOT DONE"
-    checkButtonLFP1.setAttribute("style", "width:130px;font-size:12px;padding:0px; background-color:red;")
+    checkButtonLFP1.setAttribute("style", "width:130px;font-size:12px;padding:0px; background-color:purple;")
 
   }
   //for LFP billing 1
@@ -106,7 +106,7 @@ function changeButton(){
     checkButtonLFP2.disabled = "true"
   }else{
     checkButtonLFP2.value = "98011 NOT DONE"
-    checkButtonLFP2.setAttribute("style", "width:130px;font-size:12px;padding:0px; background-color:red;")
+    checkButtonLFP2.setAttribute("style", "width:130px;font-size:12px;padding:0px; background-color:purple;")
 
   }
 
