@@ -6,9 +6,10 @@
 // @include     *provideradminday.jsp?*displaymode=day*
 // @require     https://code.jquery.com/jquery-3.6.0.js
 // @grant       GM_addStyle
-// @version	    23.02.12.0
+// @version	    24.01.15.0
 // ==/UserScript==
 
+//24.01.15.0: updated with LFP buttons
 //23.02.12.0: quipo update: changed URL details so provider info + date are accurate
 //23.02.06.0: fixed billing date so it's same date as visit, not current date
 //23.02.02.0 : updated @include another .jsp that oscar sometimes uses
@@ -31,6 +32,22 @@ var checkButton = document.createElement('input');
   checkButton.value = 'Day Hours Billed?'
   checkButton.onclick = billingButtonClick;
   checkButton.setAttribute('style', 'width:130px;font-size:12px;padding:0px; background-color:cyan;');
+
+var checkButtonLFP1 = document.createElement('input');
+  checkButtonLFP1.type = 'button';
+  checkButtonLFP1.id = 'checkButtonLFP1'
+  checkButtonLFP1.name = 'checkButtonLFP1'
+  checkButtonLFP1.value = 'Day Hours Billed?'
+  checkButtonLFP1.onclick = billingButtonLFP1Click;
+  checkButtonLFP1.setAttribute('style', 'width:130px;font-size:12px;padding:0px; background-color:cyan;');
+
+var checkButtonLFP2 = document.createElement('input');
+  checkButtonLFP2.type = 'button';
+  checkButtonLFP2.id = 'checkButtonLFP2'
+  checkButtonLFP2.name = 'checkButtonLFP2'
+  checkButtonLFP2.value = 'Day Hours Billed?'
+  checkButtonLFP2.onclick = billingButtonLFP2Click;
+  checkButtonLFP2.setAttribute('style', 'width:130px;font-size:12px;padding:0px; background-color:cyan;');
 
 window.addEventListener('load', function() {
   //console.log("running Daily Hour script")
@@ -57,6 +74,8 @@ function main(){
   //Append the button
   var AppendingParagraph = $(".infirmaryView")[0]
 	AppendingParagraph.appendChild(checkButton);
+  AppendingParagraph.appendChild(checkButtonLFP1);
+  AppendingParagraph.appendChild(checkButtonLFP2);
   realCheckBilling()
 }
 
@@ -70,6 +89,27 @@ function changeButton(){
     checkButton.setAttribute("style", "width:130px;font-size:12px;padding:0px; background-color:red;")
 
   }
+  //for LFP billing 1
+  if (ICDArray.includes("98010")){
+    checkButtonLFP1.value = "98010 DONE TODAY"
+    checkButtonLFP1.setAttribute("style", "width:130px;font-size:12px;padding:0px; background-color:lime;")
+    checkButtonLFP1.disabled = "true"
+  }else{
+    checkButtonLFP1.value = "98010 NOT DONE"
+    checkButtonLFP1.setAttribute("style", "width:130px;font-size:12px;padding:0px; background-color:red;")
+
+  }
+  //for LFP billing 1
+    if (ICDArray.includes("98011")){
+    checkButtonLFP2.value = "98011 DONE TODAY"
+    checkButtonLFP2.setAttribute("style", "width:130px;font-size:12px;padding:0px; background-color:lime;")
+    checkButtonLFP2.disabled = "true"
+  }else{
+    checkButtonLFP2.value = "98011 NOT DONE"
+    checkButtonLFP2.setAttribute("style", "width:130px;font-size:12px;padding:0px; background-color:red;")
+
+  }
+
 }
 
 function realCheckBilling(){
@@ -137,6 +177,60 @@ function billingButtonClick(){
 
   //URL for billing of first patient on list
   var newURL = vPath + "billing.do?billRegion=BC&billForm=GP&hotclick=&appointment_no=0&bNewForm=1&status=t" + "&user_no=" + providerID + "&apptProvider_no=" + providerID
+  newURL = newURL + "&demographic_no=" + demNum + "&demographic_name=" + NameFormat + "&appointment_date=" + apptDate
+
+  window.open(newURL,'Billing Window', 'left = 0,top = 0')
+}
+
+function billingButtonLFP1Click(){
+  let firstPt = document.querySelectorAll('[class="apptLink"]')
+
+  //Check to see if there any patient on the daysheet to begin with
+  if(firstPt.length>0){
+    firstPt = firstPt[0]
+  }else{
+    //console.log("no pts on list")
+    return
+  }
+
+  let extractedURL = firstPt.getAttribute("onclick").split(',')[2]
+
+  //get the demographic_no
+  let demNum = extractedURL.split("demographic_no=")[1].split("&")[0]
+  //Get the name of patient and change name into correct format for URL requirements
+  let NameFormat = firstPt.getAttribute("title").split("\n")[0].toUpperCase()
+  NameFormat = NameFormat.replace(',',"%2C")
+  let apptDate = document.querySelectorAll('[class="dateAppointment"]')[0].innerText.split(',')[1].trim()
+
+  //URL for billing of first patient on list
+  var newURL = vPath + "billing.do?billRegion=BC&billForm=L23&hotclick=&appointment_no=0&bNewForm=1&status=t" + "&user_no=" + providerID + "&apptProvider_no=" + providerID
+  newURL = newURL + "&demographic_no=" + demNum + "&demographic_name=" + NameFormat + "&appointment_date=" + apptDate
+
+  window.open(newURL,'Billing Window', 'left = 0,top = 0')
+}
+
+function billingButtonLFP2Click(){
+  let firstPt = document.querySelectorAll('[class="apptLink"]')
+
+  //Check to see if there any patient on the daysheet to begin with
+  if(firstPt.length>0){
+    firstPt = firstPt[0]
+  }else{
+    //console.log("no pts on list")
+    return
+  }
+
+  let extractedURL = firstPt.getAttribute("onclick").split(',')[2]
+
+  //get the demographic_no
+  let demNum = extractedURL.split("demographic_no=")[1].split("&")[0]
+  //Get the name of patient and change name into correct format for URL requirements
+  let NameFormat = firstPt.getAttribute("title").split("\n")[0].toUpperCase()
+  NameFormat = NameFormat.replace(',',"%2C")
+  let apptDate = document.querySelectorAll('[class="dateAppointment"]')[0].innerText.split(',')[1].trim()
+
+  //URL for billing of first patient on list
+  var newURL = vPath + "billing.do?billRegion=BC&billForm=L23&hotclick=&appointment_no=0&bNewForm=1&status=t" + "&user_no=" + providerID + "&apptProvider_no=" + providerID
   newURL = newURL + "&demographic_no=" + demNum + "&demographic_name=" + NameFormat + "&appointment_date=" + apptDate
 
   window.open(newURL,'Billing Window', 'left = 0,top = 0')
