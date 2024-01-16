@@ -10,11 +10,11 @@
 // @include     *formwcb.do?*
 // @require     https://code.jquery.com/jquery-3.6.0.js
 // @grant       GM_addStyle
-// @version	    24.01.16.2
+// @version	    24.01.16.3
 // ==/UserScript==
 
 //changelog
-//24.01.16.2: added LFP billing code rules
+//24.01.16.2: added LFP billing code rules and randomizer for indirect care billing 98011
 //23.09.11.1: changed BillingCodeArray search as problems with autopopulating times with Daycode. (need to check if works in all computers)
 //23.09.08.1: removed *billingDigNewSearch.jsp?* inclusion as causing errors in Diag Code selection pate. made separate script for that page
 //23.01.23.2: added contracted hours shift codes to auto populate (97570) the start and end times
@@ -161,8 +161,8 @@ function autoTimeInputLFP2(serviceCodeElement){ //duplicate for 98011 due to cus
   var hours = Number(serviceCodeUnitElement.value)/4;
 
   //randomize start time for indirect care
-  var startHourArray = [18,19,20]
-  var startMinArray = [0,30]
+  var startHourArray = [18,19,20,21]
+  var startMinArray = [0,15,30,45]
   var randomHour = startHourArray[Math.floor(Math.random()*startHourArray.length)]
   var randomMin = startMinArray[Math.floor(Math.random()*startMinArray.length)]
 
