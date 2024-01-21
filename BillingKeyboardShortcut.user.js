@@ -10,7 +10,7 @@
 // @include     *formwcb.do?*
 // @require     https://code.jquery.com/jquery-3.6.0.js
 // @grant       GM_addStyle
-// @version	    24.01.20.2
+// @version	    24.01.20.4
 // ==/UserScript==
 
 //changelog
@@ -189,7 +189,7 @@ function autoTimeInputLFP2(serviceCodeElement){ //duplicate for 98011 due to cus
   };
 
 
-  //hitSubmit()
+  hitSubmit()
 
 }
 
