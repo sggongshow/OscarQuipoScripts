@@ -10,7 +10,7 @@
 // @include     *formwcb.do?*
 // @require     https://code.jquery.com/jquery-3.6.0.js
 // @grant       GM_addStyle
-// @version	    24.01.16.3
+// @version	    24.01.20.1
 // ==/UserScript==
 
 //changelog
@@ -66,7 +66,7 @@ document.addEventListener('keydown', function(theEvent) {
           //console.log(BillingCodeArray[i+1])
           findHoursCode = true
           var hourscountX4 = 32 //8h 9-5
-          BillingCodeArray[i+1].value = 32
+          //BillingCodeArray[i+1].value = 32
           autoTimeInputLFP(BillingCodeArray[i+1])
           break
         }
