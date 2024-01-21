@@ -118,15 +118,16 @@ function autoTimeInput(serviceCodeElement){
   hitSubmit()
 
 }
-
-function autoTimeInputLFP(serviceCodeElement){
+//98010
+function autoTimeInputLFP(serviceCodeElement){  
   console.log("autotime input2")
   var serviceCodeUnitID = serviceCodeElement.id
   console.log(serviceCodeUnitID)
   var serviceCodeUnitElement = $(`[${"id"}="${serviceCodeUnitID}"]`)[0];
   //var serviceCodeUnitElement = document.getElementById(serviceCodeUnitID); //does the same thing
-  var hours = Number(serviceCodeUnitElement.value)/4;
-
+  //var hours = Number(serviceCodeUnitElement.value)/4;
+  hours = 32
+	
   var startHour = new Date(2022, 0, 1, 9, 0, 0)
   var startHourPrint = moment(startHour).format('HHmm')
 
@@ -152,6 +153,7 @@ function autoTimeInputLFP(serviceCodeElement){
 
 }
 
+//98011
 function autoTimeInputLFP2(serviceCodeElement){ //duplicate for 98011 due to custom later time usually.
   console.log("autotime input2")
   var serviceCodeUnitID = serviceCodeElement.id
