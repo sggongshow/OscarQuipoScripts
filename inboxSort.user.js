@@ -5,7 +5,7 @@
 // @include     *dms/inboxManage.do?*
 // @require     https://code.jquery.com/jquery-3.6.0.js
 // @grant       GM_addStyle
-// @version			24.01.31.0
+// @version			24.01.31.2
 // ==/UserScript==
 
 function tbodyMod2(column){
