@@ -76,6 +76,13 @@ async function main(){
         sort1.setAttribute('style', 'width:30px;font-size:12px;');
         headers[1].append(sort1);
 
+        var sort3 = document.createElement('input');
+        sort3.type = 'button';
+        sort3.value = 'sort';
+        sort3.onclick = function() { tbodyMod2(3); };
+        sort3.setAttribute('style', 'width:30px;font-size:12px;');
+        headers[3].append(sort3);
+       
         var sort4 = document.createElement('input');
         sort4.type = 'button';
         sort4.value = 'sort';
