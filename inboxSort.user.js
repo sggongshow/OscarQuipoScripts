@@ -5,10 +5,11 @@
 // @include     *dms/inboxManage.do?*
 // @require     https://code.jquery.com/jquery-3.6.0.js
 // @grant       GM_addStyle
-// @version			24.02.07.1
+// @version			24.02.07.2
 // ==/UserScript==
 
 //Changelog
+//24.02.07.2: Changed sort to up arrow icon
 //24.02.07.1:  if (varlength >= 1) changed to 1 instead of 4. table summary tbody count changes. will just use a standard fixed wait for load
 
 function tbodyMod2(column){
@@ -55,7 +56,7 @@ function waitForElementLength(element) {
 
 async function main(){
   //Get Cortico Icon Element
-  //console.log("main started")
+  console.log("inbox mod main started")
   var tableID = document.getElementById("summaryView")
   console.log(tableID)
 
@@ -67,44 +68,43 @@ async function main(){
 
         var sort0 = document.createElement('input');
         sort0.type = 'button';
-        sort0.value = 'sort';
+        sort0.value = '↑';
         sort0.onclick = function() { tbodyMod2(0); };
-        sort0.setAttribute('style', 'width:30px;font-size:12px;');
+        sort0.setAttribute('style', 'width:20px;font-size:12px;');
         headers[0].append(sort0);
 
         var sort1 = document.createElement('input');
         sort1.type = 'button';
-        sort1.value = 'sort';
+        sort1.value = '↑';
         sort1.onclick = function() { tbodyMod2(1); };
-        sort1.setAttribute('style', 'width:30px;font-size:12px;');
+        sort1.setAttribute('style', 'width:20px;font-size:12px;');
         headers[1].append(sort1);
 
         var sort3 = document.createElement('input');
         sort3.type = 'button';
-        sort3.value = 'sort';
+        sort3.value = '↑';
         sort3.onclick = function() { tbodyMod2(3); };
-        sort3.setAttribute('style', 'width:30px;font-size:12px;');
+        sort3.setAttribute('style', 'width:20px;font-size:12px;');
         headers[3].append(sort3);
-       
+
         var sort4 = document.createElement('input');
         sort4.type = 'button';
-        sort4.value = 'sort';
+        sort4.value = '↑';
         sort4.onclick = function() { tbodyMod2(4); };
-        sort4.setAttribute('style', 'width:30px;font-size:12px;');
+        sort4.setAttribute('style', 'width:20px;font-size:12px;');
         headers[4].append(sort4);
 
         var sort6 = document.createElement('input');
         sort6.type = 'button';
-        sort6.value = 'sort';
+        sort6.value = '↑';
         sort6.onclick = function() { tbodyMod2(6); };
-        sort6.setAttribute('style', 'width:30px;font-size:12px;');
+        sort6.setAttribute('style', 'width:20px;font-size:12px;');
         headers[6].append(sort6);
 
     });
 
 
 }
-
 //-------------------------------failed
 function tbodyMod(table){
   console.log("start tbody MOD")
