@@ -5,8 +5,11 @@
 // @include     *dms/inboxManage.do?*
 // @require     https://code.jquery.com/jquery-3.6.0.js
 // @grant       GM_addStyle
-// @version			24.01.31.2
+// @version			24.02.07.1
 // ==/UserScript==
+
+//Changelog
+//24.02.07.1:  if (varlength >= 1) changed to 1 instead of 4. table summary tbody count changes. will just use a standard fixed wait for load
 
 function tbodyMod2(column){
     console.log("mod2 running")
@@ -34,7 +37,7 @@ function waitForElementLength(element) {
             var varlength = element.children.length
             //console.log(varlength)
             // Check if varlength is greater than or equal to 4
-            if (varlength >= 4) {
+            if (varlength >= 1) {
                 //console.log("varlength is now greater than or equal to 4");
                 resolve(); // Resolve the promise to signal that the condition is met
             } else {
