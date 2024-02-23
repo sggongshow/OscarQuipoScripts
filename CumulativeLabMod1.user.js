@@ -4,7 +4,7 @@
 // @include     *lab/CumulativeLabValues.jsp*
 // @require     https://code.jquery.com/jquery-3.6.0.js
 // @grant       GM_addStyle
-// @version 	24.02.23.0
+// @version 	24.02.23.1
 // ==/UserScript==
 //========Get Path============
 
@@ -443,7 +443,7 @@ function Cumulative() {
 //Removed lines that are weird info and not labs
 function removeUnwanted() {
   		//console.log('remove unwanted')
-  		var unwantedWords = ['physician', 'report', 'history', 'notification', 'consultation', 'breast', 
+  		var unwantedWords = ['physician', 'report', 'history', 'notification', 'consultation', 'breast', 'ultrasound',
 				     'holter', 'mammo', 'other','colonoscopy','pathology', 'note',
                            	     'surgical','operation', 'discharge','date','referred','ecg',
 				     'consult', 'scopy'] //'exam'
