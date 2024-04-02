@@ -5,10 +5,11 @@
 // @include     *dms/inboxManage.do?*
 // @require     https://code.jquery.com/jquery-3.6.0.js
 // @grant       GM_addStyle
-// @version			24.02.07.2
+// @version			24.04.01.1
 // ==/UserScript==
 
 //Changelog
+//24.04.01.1: blocked main from running. Quipo OEM fix was implemented
 //24.02.07.2: Changed sort to up arrow icon
 //24.02.07.1:  if (varlength >= 1) changed to 1 instead of 4. table summary tbody count changes. will just use a standard fixed wait for load
 
@@ -141,6 +142,6 @@ function tbodyMod(table){
 
 window.addEventListener('load', function() {
   console.log("inbox mod start")
-  setTimeout(function(){ main(); }, 5000)
+  //setTimeout(function(){ main(); }, 5000)
 
 }, false);
