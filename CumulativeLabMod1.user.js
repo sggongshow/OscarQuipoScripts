@@ -4,11 +4,12 @@
 // @include     *lab/CumulativeLabValues.jsp*
 // @require     https://code.jquery.com/jquery-3.6.0.js
 // @grant       GM_addStyle
-// @version 	24.02.23.1
+// @version 	24.04.09.0
 // ==/UserScript==
 //========Get Path============
 
 //Changelog
+//24.04.09.0 - added more to removeUnwanted
 //24.02.23.0 - added more to removeUnwanted
 //24.01.22.1 - added few more words to removeUnwanted
 //23.08.15.1 - added 'holter', 'mammo' to removeUnwanted function
@@ -445,7 +446,7 @@ function removeUnwanted() {
   		//console.log('remove unwanted')
   		var unwantedWords = ['physician', 'report', 'history', 'notification', 'consultation', 'breast', 'ultrasound',
 				     'holter', 'mammo', 'other','colonoscopy','pathology', 'note',
-                           	     'surgical','operation', 'discharge','date','referred','ecg',
+                           	     'surgical','operation', 'discharge','date','referred','ecg', 'egd',
 				     'consult', 'scopy'] //'exam'
       for (i = myLabArray.length -1  ; i >= 0 ; i--) {
 				var toDelete = 0
