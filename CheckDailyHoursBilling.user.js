@@ -6,9 +6,10 @@
 // @include     *provideradminday.jsp?*displaymode=day*
 // @require     https://code.jquery.com/jquery-3.6.0.js
 // @grant       GM_addStyle
-// @version	    24.01.15.1
+// @version	    24.07.10.0
 // ==/UserScript==
 
+//24.07.10.0: 97570 button and check removed
 //24.01.15.1: updated with LFP buttons
 //23.02.12.0: quipo update: changed URL details so provider info + date are accurate
 //23.02.06.0: fixed billing date so it's same date as visit, not current date
@@ -73,7 +74,7 @@ function main(){
 
   //Append the button
   var AppendingParagraph = $(".infirmaryView")[0]
-	AppendingParagraph.appendChild(checkButton);
+	//AppendingParagraph.appendChild(checkButton);
   AppendingParagraph.appendChild(checkButtonLFP1);
   AppendingParagraph.appendChild(checkButtonLFP2);
   realCheckBilling()
