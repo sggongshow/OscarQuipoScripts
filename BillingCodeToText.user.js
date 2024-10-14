@@ -10,10 +10,11 @@
 // @include     *formwcb.do?*
 // @require     https://code.jquery.com/jquery-3.6.0.js
 // @grant       GM_addStyle
-// @version 	  24.01.13.2
+// @version 	  24.10.14.1
 // ==/UserScript==
 
 //changelog
+//24.10.14.1 - add space between icd and month code used
 //24.01.13.2 - change default form to LFP
 //23.03.21.0 - reverted to 23.03.20.3 - parts of billing still broken
 //23.03.20.3 - removed the corrent drop down selection of PCN. clarificaion and location. Options added to quipo native
@@ -37,6 +38,8 @@ function main(){
 
     var title = codeList[i].title
     var dxCode = codeList[i].text.trim()
+    dxCode = addSpaceBeforeEnd(dxCode)
+
 
     codeList[i].text = "- " + title + dxCode
 		codeList[i].title = dxCode
@@ -97,3 +100,13 @@ function main(){
   CenterBox.parentNode.appendChild(DxBox)
 
 }
+
+function addSpaceBeforeEnd(str) {
+  if (str.length < 2) {
+    return str; // If the string is less than 2 characters, return as is
+  }
+
+  // Insert a space 2 characters before the end
+  return str.slice(0, -2) + ' ' + str.slice(-2);
+}
+
