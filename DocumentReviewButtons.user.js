@@ -7,7 +7,7 @@
 // @include     *lab/CA/ALL/labDisplay.jsp?*
 // @require     https://code.jquery.com/jquery-3.6.0.js
 // @grant       GM_addStyle
-// @version			24.02.17.0
+// @version	25.02.17.0
 // ==/UserScript==
 //window.moveTo(300, 100)
 
