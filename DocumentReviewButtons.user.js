@@ -7,12 +7,13 @@
 // @include     *lab/CA/ALL/labDisplay.jsp?*
 // @require     https://code.jquery.com/jquery-3.6.0.js
 // @grant       GM_addStyle
-// @version			24.01.07.2
+// @version			24.02.17.0
 // ==/UserScript==
 //window.moveTo(300, 100)
 
 
 //Changelog
+//25.02.17.0 - changed position of label back to fixed right side
 //24.01.07.2 - fixed changed in acknowledge shortcut issues after update
 //23.05.04.2 - fixed echart button again on showDocument
 //23.03.28.3 - fixed the echart button to work AGAIN - on showDocument.jsp due to broken stuff on quipo
@@ -145,7 +146,7 @@ if (window.location.pathname.includes("labDisplay.jsp")){
   inputTextbox.value = OGLabelText
 
 
-	inputTextbox.setAttribute('style', 'width:120px;font-size:12px;padding:0px;position:fixed;top:20px;left:688px; border-color:red;');
+	inputTextbox.setAttribute('style', 'width:120px;font-size:12px;padding:0px;position:fixed;top:20px;right:10px; border-color:red;');
 	document.body.appendChild(inputTextbox);
   inputTextbox.focus()
 }else{
@@ -169,7 +170,7 @@ input.value = 'Acknow';
 input.onclick = showAlert
 
 if (window.location.pathname.includes("labDisplay.jsp")){
-input.setAttribute('style', 'width:80px;font-size:16px;z-index:1;position:fixed;top:40px;left:720px; background-color:#66ff66;');
+input.setAttribute('style', 'width:80px;font-size:16px;z-index:1;position:fixed;top:40px;right:10px; background-color:#66ff66;');
 }else{
 input.setAttribute('style', 'width:80px;font-size:16px;z-index:1;position:fixed;top:30px;right:10px; background-color:#66ff66;');
 }
@@ -248,7 +249,7 @@ input1.type = 'button';
 input1.value = 'Tickler';
 input1.onclick = showAlert1;
 if (window.location.pathname.includes("labDisplay.jsp")){
-input1.setAttribute('style', 'width:80px;font-size:16px;z-index:1;position:fixed;top:40px;left:640px; background-color:#FF6600;');
+input1.setAttribute('style', 'width:80px;font-size:16px;z-index:1;position:fixed;top:40px;right:90px; background-color:#FF6600;');
 }else{
 input1.setAttribute('style', 'width:80px;font-size:16px;z-index:1;position:fixed;top:60px;right:10px; background-color:#FF6600;');
 }
@@ -270,7 +271,7 @@ input2.type = 'button';
 input2.value = 'Echart';
 input2.onclick = OpenEchartFunc;
 if (window.location.pathname.includes("labDisplay.jsp")){
-input2.setAttribute('style', 'width:80px;font-size:16px;z-index:1;position:fixed;top:40px;left:560px;');
+input2.setAttribute('style', 'width:80px;font-size:16px;z-index:1;position:fixed;top:40px;right:170px;');
 }else{
 input2.setAttribute('style', 'width:80px;font-size:16px;z-index:1;position:fixed;top:90px;right:10px;');
 }
