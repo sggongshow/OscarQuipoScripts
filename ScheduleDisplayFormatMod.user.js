@@ -6,11 +6,12 @@
 // @include     *provideradminday.jsp?*displaymode=day*
 // @require     https://code.jquery.com/jquery-3.6.0.js
 // @grant       GM_addStyle
-// @version	    23.03.20.1
+// @version	    25.04.21.1
 // ==/UserScript==
 
 
 //Changelog
+// 25.04.21.1 redone - shows full appt discrecption again
 // 23.03.20.1: quipo changed format. adjusted code. Essentially remove bolding of things
 // 23.03.19.2: Changed it so all appointsments are selected when mulitple doctor schedules are visible
 // 23.03.19.1: changed the formatting a bit. Didn't like the bold and extra spaces
@@ -28,8 +29,9 @@ window.addEventListener('load', function() {
   }
 
   var apptDescriptionArray = document.querySelectorAll('[class^=reason_][class$=hideReason]')
-  console.log(apptDescriptionArray)
+  //onsole.log(apptDescriptionArray)
 
+  /*
   for (var i = 0; i < apptDescriptionArray.length; i++){  //apptDescriptionArray.length
     var apptSelected = apptDescriptionArray[i]
     //console.log(apptSelected)
@@ -75,7 +77,16 @@ window.addEventListener('load', function() {
     apptSelected.innerHTML = apptHTMLNew
 
   }
+  */
 
+  var apptReasonArray = document.querySelectorAll('[class=appt-reason]')
+  console.log(apptReasonArray)
+
+  for (var i = 0; i < apptReasonArray.length; i++){
+    var apptSelected = apptReasonArray[i]
+    apptSelected.style.maxWidth = '800px'
+
+  }
 
 }, false);
 
