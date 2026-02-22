@@ -6,12 +6,12 @@
 // @include     *provideradminday.jsp?*displaymode=day*
 // @require     https://code.jquery.com/jquery-3.6.0.js
 // @grant       GM_addStyle
-// @version	    26.02.22.2
+// @version	    26.02.22.4
 // ==/UserScript==
 
 //changelog
 //26.02.22.0: enabled the change from last one. LFP, Time
-//26.02.16.0: changed buttons to link directly to Time, LFP due due to billing changes. Not yet enabled pending start 
+//26.02.16.0: changed buttons to link directly to Time, LFP due due to billing changes. Not yet enabled pending start
 //24.07.10.0: 97570 button and check removed
 //24.01.15.1: updated with LFP buttons
 //23.02.12.0: quipo update: changed URL details so provider info + date are accurate
@@ -216,31 +216,11 @@ function billingButtonLFP1Click(){
 }
 
 function billingButtonLFP1ClickV2(){   //for Time,LFP patient
-  let firstPt = document.querySelectorAll('[class="apptLink"]')
-
-  //Check to see if there any patient on the daysheet to begin with
-  if(firstPt.length>0){
-    firstPt = firstPt[0]
-  }else{
-    //console.log("no pts on list")
-    return
-  }
-
-  let extractedURL = firstPt.getAttribute("onclick").split(',')[2]
-
-  //UNUSED NOW
-  //get the demographic_no
-  let demNum = extractedURL.split("demographic_no=")[1].split("&")[0]
-  //Get the name of patient and change name into correct format for URL requirements
-  let NameFormat = firstPt.getAttribute("title").split("\n")[0].toUpperCase()
-  NameFormat = NameFormat.replace(',',"%2C")
-
 
   let apptDate = document.querySelectorAll('[class="dateAppointment"]')[0].innerText.split(',')[1].trim()
   //URL for billing of first patient on list
   var newURL = vPath + "billing.do?billRegion=BC&billForm=L23&hotclick=&appointment_no=0&bNewForm=1&status=t" + "&user_no=" + providerID + "&apptProvider_no=" + providerID
   newURL = newURL + "&demographic_no=" + "187029" + "&demographic_name=" + "Time%2CLfp" + "&appointment_date=" + apptDate
-
   window.open(newURL,'Billing Window', 'left = 0,top = 0')
 }
 
@@ -272,25 +252,7 @@ function billingButtonLFP2Click(){
 }
 
 function billingButtonLFP2ClickV2(){
-  let firstPt = document.querySelectorAll('[class="apptLink"]')
-
-  //Check to see if there any patient on the daysheet to begin with
-  if(firstPt.length>0){
-    firstPt = firstPt[0]
-  }else{
-    //console.log("no pts on list")
-    return
-  }
-
-  let extractedURL = firstPt.getAttribute("onclick").split(',')[2]
-
-  //get the demographic_no
-  let demNum = extractedURL.split("demographic_no=")[1].split("&")[0]
-  //Get the name of patient and change name into correct format for URL requirements
-  let NameFormat = firstPt.getAttribute("title").split("\n")[0].toUpperCase()
-  NameFormat = NameFormat.replace(',',"%2C")
   let apptDate = document.querySelectorAll('[class="dateAppointment"]')[0].innerText.split(',')[1].trim()
-
   //URL for billing of first patient on list
   var newURL = vPath + "billing.do?billRegion=BC&billForm=L23&hotclick=&appointment_no=0&bNewForm=1&status=t" + "&user_no=" + providerID + "&apptProvider_no=" + providerID
   newURL = newURL + "&demographic_no=" + "187029" + "&demographic_name=" + "Time%2CLfp" + "&appointment_date=" + apptDate
@@ -298,4 +260,3 @@ function billingButtonLFP2ClickV2(){
   window.open(newURL,'Billing Window', 'left = 0,top = 0')
 }
 //billing.do?billRegion=BC&billForm=GP&hotclick=&demographic_name=Liu%2CXiao&status=t&demographic_no=48873&providerview=133&user_no=133&apptProvider_no=133&appointment_date=2023-2-13&start_time=09:00:00&bNewForm=1
-
