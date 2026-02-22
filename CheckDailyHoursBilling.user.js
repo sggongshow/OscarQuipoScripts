@@ -6,7 +6,7 @@
 // @include     *provideradminday.jsp?*displaymode=day*
 // @require     https://code.jquery.com/jquery-3.6.0.js
 // @grant       GM_addStyle
-// @version	    26.02.22.0
+// @version	    26.02.22.2
 // ==/UserScript==
 
 //changelog
@@ -43,7 +43,7 @@ var checkButtonLFP1 = document.createElement('input');
   checkButtonLFP1.name = 'checkButtonLFP1'
   checkButtonLFP1.value = 'Day Hours Billed?'
   //checkButtonLFP1.onclick = billingButtonLFP1Click;
-  checkButtonLFP2.onclick = billingButtonLFP2ClickV2;
+  checkButtonLFP1.onclick = billingButtonLFP1ClickV2;
   checkButtonLFP1.setAttribute('style', 'width:130px;font-size:12px;padding:0px; background-color:cyan;');
 
 var checkButtonLFP2 = document.createElement('input');
