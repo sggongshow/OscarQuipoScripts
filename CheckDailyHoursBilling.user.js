@@ -6,10 +6,11 @@
 // @include     *provideradminday.jsp?*displaymode=day*
 // @require     https://code.jquery.com/jquery-3.6.0.js
 // @grant       GM_addStyle
-// @version	    26.02.16.0
+// @version	    26.02.22.0
 // ==/UserScript==
 
 //changelog
+//26.02.22.0: enabled the change from last one. LFP, Time
 //26.02.16.0: changed buttons to link directly to Time, LFP due due to billing changes. Not yet enabled pending start 
 //24.07.10.0: 97570 button and check removed
 //24.01.15.1: updated with LFP buttons
@@ -41,8 +42,8 @@ var checkButtonLFP1 = document.createElement('input');
   checkButtonLFP1.id = 'checkButtonLFP1'
   checkButtonLFP1.name = 'checkButtonLFP1'
   checkButtonLFP1.value = 'Day Hours Billed?'
-  checkButtonLFP1.onclick = billingButtonLFP1Click;
-  //checkButtonLFP2.onclick = billingButtonLFP2ClickV2;
+  //checkButtonLFP1.onclick = billingButtonLFP1Click;
+  checkButtonLFP2.onclick = billingButtonLFP2ClickV2;
   checkButtonLFP1.setAttribute('style', 'width:130px;font-size:12px;padding:0px; background-color:cyan;');
 
 var checkButtonLFP2 = document.createElement('input');
@@ -50,8 +51,8 @@ var checkButtonLFP2 = document.createElement('input');
   checkButtonLFP2.id = 'checkButtonLFP2'
   checkButtonLFP2.name = 'checkButtonLFP2'
   checkButtonLFP2.value = 'Day Hours Billed?'
-  checkButtonLFP2.onclick = billingButtonLFP2Click;
-  //checkButtonLFP2.onclick = billingButtonLFP2ClickV2;
+  //checkButtonLFP2.onclick = billingButtonLFP2Click;
+  checkButtonLFP2.onclick = billingButtonLFP2ClickV2;
   checkButtonLFP2.setAttribute('style', 'width:130px;font-size:12px;padding:0px; background-color:cyan;');
 
 window.addEventListener('load', function() {
