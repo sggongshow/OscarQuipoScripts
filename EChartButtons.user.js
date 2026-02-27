@@ -6,7 +6,7 @@
 // @grant       GM_addStyle
 // @grant 	GM_openInTab
 // @include     */casemgmt/forward.jsp?action=view&demographic*
-// @version     26.02.26.0
+// @version     26.02.27.0
 // ==/UserScript==
 //window.moveTo(300, 100)
 //
@@ -489,7 +489,7 @@ function main(){
   //console.log(newestNote)
   //console.log(noteText)
   autoEncouterDate()
-  changePlusButton()
+  
 }
 
 function waitForNote() {
@@ -515,6 +515,7 @@ window.addEventListener('load', function() {
   //setTimeout(function(){ main(); }, 1500)
   console.log('test')
   waitForNote()
+  changePlusButton()
 
 
 }, false);
