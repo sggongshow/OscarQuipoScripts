@@ -6,14 +6,15 @@
 // @grant       GM_addStyle
 // @grant 	GM_openInTab
 // @include     */casemgmt/forward.jsp?action=view&demographic*
-// @version     23.12.04.0
+// @version     26.02.26.0
 // ==/UserScript==
 //window.moveTo(300, 100)
 //
 //changelog
+//26.02.26.0 - make the + buttons wider and +++
 //23.12.04.0 - updated Dr Note FID
 //23.11.10.0 - changed CVD eform FID to new one
-//23.08.11.0 - added auto encouter date to note 
+//23.08.11.0 - added auto encouter date to note
 //23.02.12.0 - re-enabled lab grid for quipo
 //23.01.10.1 - changed to surrey imaging req and lifelabs
 //22.12.08.0 - lab grid dead. looonnng wait due to well health. disabled
@@ -488,6 +489,7 @@ function main(){
   //console.log(newestNote)
   //console.log(noteText)
   autoEncouterDate()
+  changePlusButton()
 }
 
 function waitForNote() {
@@ -539,7 +541,31 @@ function autoEncouterDate(){
   dateVar.value = formattedDate
 }
 
+//----------------------------------------------------------------------
+//----------------------------------------------------------------------
+//----------------------------------------------------------------------
+// Change + buttons to bigger easier to click
 
+function changePlusButton(){
+  var boxes = [...document.querySelectorAll('.leftBox')].filter(el =>   el.querySelectorAll(':scope > div').length >= 2);
+
+  // change + to +++ and wider
+  for (let i = 0; i < boxes.length; i++) {
+    var plusDiv = boxes[i].querySelector(':scope > div');
+    plusDiv.style.width="40%"
+    plusDiv.querySelector('a').textContent = '+++'
+  }
+
+  //for the weird few that have a 90% div width. that need to be changed 
+  document.querySelectorAll('div').forEach(div => {
+  const child = [...div.children].find(el =>
+    el.tagName === 'DIV' && el.style.width === '90%'
+  );
+    if (child) child.style.width = '60%';
+  });
+
+
+}
 
 
 
