@@ -3,16 +3,17 @@
 // @namespace   GongOscar
 // @description Constant EForm Submit and Print button locations
 // @include     *lab/CA/ALL/labDisplay.jsp?*
-// @include			*www.cpsbc.ca/public/registrant-directory/search-result*
+// @include			*cpsbc.ca/directory/search-result*
 // @require     https://code.jquery.com/jquery-3.6.0.js
 // @grant       GM_addStyle
-// @version		  24.09.25.1
+// @version		  26.06.18.1
 // @grant           GM.setValue
 // @grant           GM.getValue
 // @grant						GM.openInTab
 // ==/UserScript==
 
-
+//changelog
+//26.06.18.1 - changed based on new URL
 
 window.addEventListener('load', function () {
 (async () => {
@@ -91,7 +92,7 @@ var docNameField
     GM.setValue("last", docNameLast)
     GM.setValue("first", docNameFirst)
     GM.setValue("count", 100)
-    var windowCPSBC = window.open("https://www.cpsbc.ca/public/registrant-directory/search-result")
+    var windowCPSBC = window.open("https://www.cpsbc.ca/directory/search-result")
     //var windowCPSBC = window.open("https://www.cpsbc.ca/public/registrant-directory")
     //GM.openInWindow("https://www.cpsbc.ca/public/registrant-directory/search-result")
 	}
