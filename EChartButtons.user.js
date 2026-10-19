@@ -6,11 +6,12 @@
 // @grant       GM_addStyle
 // @grant 	GM_openInTab
 // @include     */casemgmt/forward.jsp?action=view&demographic*
-// @version     26.02.27.0
+// @version     26.10.18.0
 // ==/UserScript==
 //window.moveTo(300, 100)
 //
 //changelog
+//26.10.18.0 - paused auto ObservationDate, causing errors after quipo update
 //26.02.26.0 - make the + buttons wider and +++
 //23.12.04.0 - updated Dr Note FID
 //23.11.10.0 - changed CVD eform FID to new one
@@ -489,7 +490,7 @@ function main(){
   //console.log(newestNote)
   //console.log(noteText)
   autoEncouterDate()
-  
+
 }
 
 function waitForNote() {
@@ -539,7 +540,7 @@ function autoEncouterDate(){
 
   var formattedDate = `${day}-${month}-${year} ${hours}:${minutes}`;
 
-  dateVar.value = formattedDate
+  //dateVar.value = formattedDate
 }
 
 //----------------------------------------------------------------------
@@ -557,7 +558,7 @@ function changePlusButton(){
     plusDiv.querySelector('a').textContent = '+++'
   }
 
-  //for the weird few that have a 90% div width. that need to be changed 
+  //for the weird few that have a 90% div width. that need to be changed
   document.querySelectorAll('div').forEach(div => {
   const child = [...div.children].find(el =>
     el.tagName === 'DIV' && el.style.width === '90%'
